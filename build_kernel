@@ -1,26 +1,39 @@
 #!/bin/bash
+set -e
 
-mkdir workdir
-cd workdir
+readonly SUDO=/usr/bin/sudo
+readonly APT=/usr/bin/apt
 
-git clone git@github.com:s3714110/RaspberryPi4Kernel.git
+$SUDO $APT install -y raspberrypi-kernel-headers build-essential bc git wget bison flex libssl-dev make
 
-git clone --depth=1 https://github.com/raspberrypi/linux
-cd linux
+readonly RM=/bin/rm
+readonly MKDIR=/bin/mkdir
+readonly SED=/bin/sed
+readonly MAKE=/usr/bin/make
+readonly CP=/bin/cp
+readonly GIT=/usr/bin/git
+readonly REBOOT=/sbin/reboot
 
-sudo apt install -y raspberrypi-kernel-headers build-essential bc git wget bison flex libssl-dev make
-KERNEL=kernel7l
-make bcm2711_defconfig
+$RM -r -f workdir; $MKDIR workdir
+cd workdir || return
 
-sed -i '/^CONFIG_LOCALVERSION/s/.*/CONFIG_LOCALVERSION="-v7l-s3714110-test"/' .config
-sed -i '/^CONFIG_MEDIA_CAMERA_SUPPORT=/s/.*/# CONFIG_MEDIA_CAMERA_SUPPORT is not set/' .config
+$GIT clone git@github.com:s3714110/RaspberryPi4Kernel.git
 
-make -j4 zImage modules dtbs
+$GIT clone --depth=1 https://github.com/raspberrypi/linux
+cd linux || return
 
-sudo make modules_install
-sudo cp arch/arm/boot/dts/*.dtb /boot/
-sudo cp arch/arm/boot/dts/overlays/*.dtb* /boot/overlays/
-sudo cp arch/arm/boot/dts/overlays/README /boot/overlays/
-sudo cp arch/arm/boot/zImage /boot/$KERNEL.img
+readonly KERNEL=kernel7l
+$MAKE bcm2711_defconfig
 
-sudo reboot
+$SED -i '/^CONFIG_LOCALVERSION/s/.*/CONFIG_LOCALVERSION="-v7l-s3714110"/' .config
+$SED -i '/^CONFIG_MEDIA_CAMERA_SUPPORT=/s/.*/# CONFIG_MEDIA_CAMERA_SUPPORT is not set/' .config
+
+$MAKE -j4 zImage modules dtbs
+
+$SUDO $MAKE modules_install
+$SUDO $CP arch/arm/boot/dts/*.dtb /boot/
+$SUDO $CP arch/arm/boot/dts/overlays/*.dtb* /boot/overlays/
+$SUDO $CP arch/arm/boot/dts/overlays/README /boot/overlays/
+$SUDO $CP arch/arm/boot/zImage /boot/$KERNEL.img
+
+$SUDO $REBOOT
