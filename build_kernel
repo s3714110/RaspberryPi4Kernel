@@ -1,0 +1,26 @@
+#!/bin/bash
+
+mkdir workdir
+cd workdir
+
+git clone git@github.com:s3714110/RaspberryPi4Kernel.git
+
+git clone --depth=1 https://github.com/raspberrypi/linux
+cd linux
+
+sudo apt install -y raspberrypi-kernel-headers build-essential bc git wget bison flex libssl-dev make
+KERNEL=kernel7l
+make bcm2711_defconfig
+
+sed -i '/^CONFIG_LOCALVERSION/s/.*/CONFIG_LOCALVERSION="-v7l-s3714110-test"/' .config
+sed -i '/^CONFIG_MEDIA_CAMERA_SUPPORT=/s/.*/# CONFIG_MEDIA_CAMERA_SUPPORT is not set/' .config
+
+make -j4 zImage modules dtbs
+
+sudo make modules_install
+sudo cp arch/arm/boot/dts/*.dtb /boot/
+sudo cp arch/arm/boot/dts/overlays/*.dtb* /boot/overlays/
+sudo cp arch/arm/boot/dts/overlays/README /boot/overlays/
+sudo cp arch/arm/boot/zImage /boot/$KERNEL.img
+
+sudo reboot
