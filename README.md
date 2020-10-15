@@ -39,12 +39,12 @@
           This scripts contains some commands elevated privileges. Users need to have access to sudo command to run this script.
 
      Error when cloning raspberry pi kernel repository
-          Because the kernal is quite heavy, it's very likely that you don't have enough space to download the content of the repository, so make sure you have enough disk space.
+          Because the kernal is quite heavy, it's very likely that you don't have enough space to download the content of the repository, so make sure you have enough disk  space.
 
      NO SSH KEY FOUND FOR GITHUB.
           This is because you either have not added a SSH key pairto your account, or you have misplaced the SSH private key into the wrong folder. Please consult github documentation for  more info.
 
-     Error occured while compiling kernal
+     Error occured while compiling kernel
 	  You might have a different Pi model. Please note this script contains config file for Raspberry 4 Pi model only.
 	  
 ### **BUGS**
