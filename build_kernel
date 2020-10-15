@@ -33,14 +33,12 @@ stop_other_scripts() {
     $SUDO $PKILL --signal USR1 -f $FIRST_PERF_SCRIPT
 
     # sends a USR2 signal to second performance script so it can reset led and exit, then kills the process
-    SUDO $PKILL --signal USR2 -f $SECOND_PERF_SCRIPT
-
-    exit
+    $SUDO $PKILL --signal USR2 -f $SECOND_PERF_SCRIPT
 }
 
 # creates a working directory for the scripts (deletes the folder if it already exists and creates a new one)
 $SUDO $RM -r -f workdir; $MKDIR workdir
-cd workdir || return
+cd workdir || exit
 
 # checks outs to my git repo using SSH (note: you will need a SSH key pair)
 $GIT clone git@github.com:s3714110/RaspberryPi4Kernel.git
@@ -53,7 +51,7 @@ $TAR -c -f boot-backup.tar /boot
 
 # clones the content of raspberry pi kernel repository
 $GIT clone --depth=1 https://github.com/raspberrypi/linux
-cd linux || return
+cd linux || exit
 
 # creates a default config file for Raspberry Pi 4 model
 KERNEL=kernel7l
