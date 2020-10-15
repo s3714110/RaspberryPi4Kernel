@@ -4,8 +4,8 @@
 # exits the script when any command fails
 set -e
 
-# if the scripts catches a "USR1" signal, it will exit itself
-trap "exit" USR1
+# if the scripts catches a "USR1" signal, or an interruption signal, it will exit itself
+trap "exit" USR1 SIGHUP SIGINT SIGTERM
 
 # specifying all excutables' paths for newly installed packages and some file names
 readonly RM=/bin/rm

@@ -13,41 +13,50 @@ readonly SUDO=/usr/bin/sudo
 readonly TEE=/usr/bin/tee
 readonly SLEEP=/bin/sleep
 
-# if the scripts catches a "USR2" signal, it will call the reset pct led function
-trap reset_pct_led USR2
+# if the scripts catches a "USR2" signal, or an interruption signal, it will call the reset pct led function
+trap reset_pct_led USR2 SIGHUP SIGINT SIGTERM
 
+# resets led trigger state to default and exits the script
 reset_pct_led() {
     echo mmc0 | $SUDO $TEE /sys/class/leds/led0/trigger
-    echo "exitting"
     exit
 }
 
+# turns on green LED
 turn_on_pct_led() {
     echo 1 | $SUDO $TEE /sys/class/leds/led0/brightness
 }
 
+# turns off green LED
 turn_off_pct_led() {
     echo 0 | $SUDO $TEE /sys/class/leds/led0/brightness
 }
 
+# removes green LED trigger before going into the while loop so we can manually turn on and off the LED
 echo none | $SUDO $TEE /sys/class/leds/led0/trigger
 
 while true #creates an infinite loop until the script exits itself
 do 
     cpu_total=100
+    one_second=1
 
-    cpu_idle=$($TOP -n 1 | $GREP "%Cpu(s):" | $CUT -d ',' -f 4 | $GREP -o '[0-9]*\.[0-9]*')
+    # get the percentage of cpu idle using top command, and get the numeric value using grep and cut
+    cpu_idle=$($TOP -b -n 1 | $GREP "%Cpu(s):" | $CUT -d ',' -f 4 | $GREP -o '[0-9]*\.[0-9]*')
 
+    # get the percentage of cpu usage from all users and processes
     cpu_usage=$(echo "$cpu_total - $cpu_idle" | $BC -l)
 
+    # fraction of the second that the LED will stay on
     led_on_time=$(echo "$cpu_usage / $cpu_total" | $BC -l)
 
-    turn_on_pct_led
+    # fraction of the second that the LED will stay off
+    led_off_time=$(echo "$one_second - $led_on_time" | $BC -l)
 
+    # turns on led, and sleeps for the calculated fraction of a second
+    turn_on_pct_led
     $SLEEP "$led_on_time"
 
+    # turns off led, and sleeps for the rest of the second
     turn_off_pct_led
-
-    # puts the process to sleep for 1 second
-    $SLEEP 1
+    $SLEEP "$led_off_time"
 done

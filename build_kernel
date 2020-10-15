@@ -23,7 +23,20 @@ readonly PKILL=/usr/bin/pkill
 readonly TAR=/bin/tar
 readonly UNAME=/bin/uname
 readonly FIRST_PERF_SCRIPT=first_perf_script
+readonly SECOND_PERF_SCRIPT=second_perf_script
 readonly REBOOT=/sbin/reboot
+
+# stops other running scripts and exits itself if received an interrupting signal
+trap stop_other_scripts SIGHUP SIGINT SIGTERM
+stop_other_scripts() {
+    # sends a USR1 signal to first performance script so it can exit, then kills the process
+    $SUDO $PKILL --signal USR1 -f $FIRST_PERF_SCRIPT
+
+    # sends a USR2 signal to second performance script so it can reset led and exit, then kills the process
+    SUDO $PKILL --signal USR2 -f $SECOND_PERF_SCRIPT
+
+    exit
+}
 
 # creates a working directory for the scripts (deletes the folder if it already exists and creates a new one)
 $SUDO $RM -r -f workdir; $MKDIR workdir
@@ -52,14 +65,19 @@ $SED -i '/^CONFIG_LOCALVERSION/s/.*/CONFIG_LOCALVERSION="-v7l-s3714110"/' .confi
 # disables support for video and camera
 $SED -i '/^CONFIG_MEDIA_CAMERA_SUPPORT=/s/.*/# CONFIG_MEDIA_CAMERA_SUPPORT is not set/' .config
 
-# runs first performance script in background
-cd ../../; $BASH ./$FIRST_PERF_SCRIPT &
+# runs first and second performance script in the background
+cd ../../
+$BASH ./$FIRST_PERF_SCRIPT &
+$BASH ./$SECOND_PERF_SCRIPT &
 
 # starts compling the kernel, the -j4 indicates 4 cores will be used
 cd workdir/linux; $MAKE -j4 zImage modules dtbs
 
 # sends a USR1 signal to first performance script so it can exit, then kills the process
 $SUDO $PKILL --signal USR1 -f $FIRST_PERF_SCRIPT
+
+# sends a USR2 signal to second performance script so it can reset led and exit, then kills the process
+$SUDO $PKILL --signal USR2 -f $SECOND_PERF_SCRIPT
 
 # installs the kernel modules
 $SUDO $MAKE modules_install
