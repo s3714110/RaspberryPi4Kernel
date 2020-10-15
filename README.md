@@ -4,7 +4,7 @@
 
 ### **NAME**
 
-    **build_kernel** - builds and installs kernal on a Raspberry Pi 4
+   **build_kernel** - builds and installs kernal on a Raspberry Pi 4
 
 ### **SYNOPSIS**
 
@@ -12,7 +12,7 @@
 
 ### **DESCRIPTION**
 
-     **build_kernel** is a script that builds and installs a customiomised kernel for your Raspberry Pi 4. This script also installs necessary packages for the kernal install and backs up 
+   **build_kernel** is a script that builds and installs a customiomised kernel for your Raspberry Pi 4. This script also installs necessary packages for the kernal install and backs up 
      the current kernel in case something fails. While compiling the kernel, the script will also call first_perf_script, that measures CPU temperature and clock speeds every second and 
      outputs the data to an external file. After finishing installing the new kernel, the script will automatically reboot the system to load up the new kernel.
      
