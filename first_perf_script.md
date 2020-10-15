@@ -39,5 +39,6 @@
    Lam Tran 
    <s3714110@student.rmit.edu.au>
 
-
+### **SEE ALSO**
+   [build_kernel(1)](readme.md)
 
