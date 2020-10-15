@@ -1,0 +1,23 @@
+#!/bin/bash
+#This script controls the green LED of the Pi according to the CPU usage
+
+# exits the script when any command fails
+set -e
+
+# if the scripts catches a "USR2" signal, it will exit itself
+trap "exit" USR2
+
+# specifying all excutables' paths
+readonly TOP=/usr/bin/top
+readonly GREP=/bin/grep
+readonly CUT=/usr/bin/cut
+readonly BC=/usr/bin/bc
+
+cpu_total=100
+
+cpu_idle=$($TOP -n 1 | $GREP "%Cpu(s):" | $CUT -d ',' -f 4 | $GREP -o '[0-9]*\.[0-9]*')
+
+cpu_usage=$(echo "$cpu_total - $cpu_idle" | $BC)
+
+echo "$cpu_idle"
+echo "$cpu_usage"

@@ -9,7 +9,7 @@ readonly SUDO=/usr/bin/sudo
 readonly APT=/usr/bin/apt
 
 # installs all prerequisite packages
-$SUDO $APT install -y raspberrypi-kernel-headers build-essential bc git wget bison flex libssl-dev make tar sed grep
+$SUDO $APT install -y raspberrypi-kernel-headers build-essential bc git wget bison flex libssl-dev make tar sed grep bc
 
 # specifying all excutables' paths for newly installed packages and some file names
 readonly RM=/bin/rm
