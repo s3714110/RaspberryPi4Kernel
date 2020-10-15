@@ -26,7 +26,7 @@ readonly FIRST_PERF_SCRIPT=first_perf_script
 readonly SECOND_PERF_SCRIPT=second_perf_script
 readonly REBOOT=/sbin/reboot
 
-# stops other running scripts and exits itself if received an interrupting signal
+# stops other running scripts if received an interrupting signal
 trap stop_other_scripts SIGHUP SIGINT SIGTERM
 stop_other_scripts() {
     # sends a USR1 signal to first performance script so it can exit, then kills the process
