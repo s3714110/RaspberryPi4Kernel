@@ -2,17 +2,17 @@
 build_kernel(1)                     User Manuals                    build_kernel(1)
 
 
-NAME
+###**NAME**###
 
-    build_kernel - builds and installs kernal on a Raspberry Pi 4
+    **build_kernel** - builds and installs kernal on a Raspberry Pi 4
 
-SYNOPSIS
+###**SYNOPSIS**###
 
     ./build_kernel [&]
 
-DESCRIPTION
+###**DESCRIPTION**###
 
-     build_kernel is a script that builds and installs a customi-
+     **build_kernel** is a script that builds and installs a customi-
      omised kernel for your Raspberry Pi 4. This script also ins- 
      tall necessary packages for the kernal install and backs up 
      the current kernel in case something fails. While compiling 
@@ -22,11 +22,11 @@ DESCRIPTION
      ing the new kernel, the script will automatically reboot the
      system to load up the new kernel
      
-OPTIONS
+###**OPTIONS**###
 
      &   Runs the script in the background (not outputting to te-
 	 rminal)
-FILES
+###**FILES**###
 
      /workdir/kernel-backup.tar
           Backup of the current kernel module before installation
@@ -42,7 +42,7 @@ FILES
      ./first_perf_script
           Script that measures CPU temp and clock every second
       
-DIAGNOSTICS
+###**DIAGNOSTICS**###
 
      Permission Denied
           This scripts contains some commands elevated privileges.
@@ -63,12 +63,13 @@ DIAGNOSTICS
      Error occured while compiling kernal
 	  You might have a different Pi model. Please note this script
 	  contain config file for Raspberry 4 Pi model only.
-BUGS
+	  
+###**BUGS**###
 
      No bugs have been found as of yet. Please contact the author 
      if you find any bug within the script.
 
-AUTHOR
+###**AUTHOR**###
 
      Lam Tran <s3714110@student.rmit.edu.au>
 
