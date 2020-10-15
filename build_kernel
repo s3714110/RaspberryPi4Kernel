@@ -1,11 +1,17 @@
 #!/bin/bash
+#This script will build and install new kernel on a Raspberry Pi 4
+
+# exits the script when any command fails
 set -e
 
+# specifying all excutables' paths
 readonly SUDO=/usr/bin/sudo
 readonly APT=/usr/bin/apt
 
-$SUDO $APT install -y raspberrypi-kernel-headers build-essential bc git wget bison flex libssl-dev make
+# installs all prerequisite packages
+$SUDO $APT install -y raspberrypi-kernel-headers build-essential bc git wget bison flex libssl-dev make tar
 
+# specifying all excutables' paths for newly installed packages and some file names
 readonly RM=/bin/rm
 readonly MKDIR=/bin/mkdir
 readonly SED=/bin/sed
@@ -14,32 +20,55 @@ readonly CP=/bin/cp
 readonly GIT=/usr/bin/git
 readonly BASH=/bin/bash
 readonly PKILL=/usr/bin/pkill
+readonly TAR=/bin/tar
+readonly UNAME=/bin/uname
 readonly FIRST_PERF_SCRIPT=first_perf_script
 readonly REBOOT=/sbin/reboot
 
+# creates a working directory for the scripts (deletes the folder if it already exists and creates a new one)
 $SUDO $RM -r -f workdir; $MKDIR workdir
 cd workdir || return
 
+# checks outs to my git repo using SSH (note: you will need a SSH key pair)
 $GIT clone git@github.com:s3714110/RaspberryPi4Kernel.git
 
+# creates a backup of the current kernel modules and compresses it into a tar file
+$TAR -c -f kernel-backup.tar "/lib/modules/$($UNAME -r)"
+
+# creates a backup of the boot folder and compresses it into a tar file
+$TAR -c -f boot-backup.tar /boot
+
+# clones the content of raspberry pi kernel repository
 $GIT clone --depth=1 https://github.com/raspberrypi/linux
 cd linux || return
 
-readonly KERNEL=kernel7l
-
+# creates a default config file for Raspberry Pi 4 model
+KERNEL=kernel7l
 $MAKE bcm2711_defconfig
 
+# Modyfying config file
+# appeneds my student number to the kernel verision
 $SED -i '/^CONFIG_LOCALVERSION/s/.*/CONFIG_LOCALVERSION="-v7l-s3714110"/' .config
+# disables support for video and camera
 $SED -i '/^CONFIG_MEDIA_CAMERA_SUPPORT=/s/.*/# CONFIG_MEDIA_CAMERA_SUPPORT is not set/' .config
 
+# runs first performance script in background
 cd ../../; $BASH ./$FIRST_PERF_SCRIPT &
+
+# starts compling the kernel, the -j4 indicates 4 cores will be used
 cd workdir/linux; $MAKE -j4 zImage modules dtbs
+
+# sends a USR1 signal to first performance script so it can exit, then kills the process
 $SUDO $PKILL --signal USR1 -f $FIRST_PERF_SCRIPT
 
+# installs the kernel modules
 $SUDO $MAKE modules_install
+
+# copys the neccesary files to the /boot folder
 $SUDO $CP arch/arm/boot/dts/*.dtb /boot/
 $SUDO $CP arch/arm/boot/dts/overlays/*.dtb* /boot/overlays/
 $SUDO $CP arch/arm/boot/dts/overlays/README /boot/overlays/
 $SUDO $CP arch/arm/boot/zImage /boot/$KERNEL.img
 
+# reboots Pi to load up the new kernel
 $SUDO $REBOOT
