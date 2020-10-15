@@ -12,9 +12,9 @@
 
 ### **USER DOCUMENTATION**
 
-  [build_kernel()](build_kernel.md)
+  [build_kernel](build_kernel.md)
 
-  [first_perf_script()](first_perf_script.md)
+  [first_perf_script](first_perf_script.md)
 
 
 ### **MODIFY CONFIG**
@@ -27,4 +27,4 @@
   And replace it with these lines
 	 
 	KERNEL=kernel7
-	make bcm2709_defconfig
+	$MAKE bcm2709_defconfig
