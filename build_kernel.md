@@ -1,5 +1,5 @@
 
-#   % build_kernel(1) | User Manuals                   
+#   % build_kernel() VERSION 1.0 | User Manuals                   
 
 
 ### **NAME**
@@ -57,4 +57,4 @@
    <s3714110@student.rmit.edu.au>
 
 ### **SEE ALSO**
-   [first_perf_script(1)](first_perf_script.md)
+   [first_perf_script()](first_perf_script.md)
