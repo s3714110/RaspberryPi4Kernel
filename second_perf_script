@@ -11,12 +11,14 @@ readonly CUT=/usr/bin/cut
 readonly BC=/usr/bin/bc
 readonly SUDO=/usr/bin/sudo
 readonly TEE=/usr/bin/tee
+readonly SLEEP=/bin/sleep
 
 # if the scripts catches a "USR2" signal, it will call the reset pct led function
 trap reset_pct_led USR2
 
 reset_pct_led() {
     echo mmc0 | $SUDO $TEE /sys/class/leds/led0/trigger
+    echo "exitting"
     exit
 }
 
@@ -28,16 +30,24 @@ turn_off_pct_led() {
     echo 0 | $SUDO $TEE /sys/class/leds/led0/brightness
 }
 
-cpu_total=100
+echo none | $SUDO $TEE /sys/class/leds/led0/trigger
 
-cpu_idle=$($TOP -n 1 | $GREP "%Cpu(s):" | $CUT -d ',' -f 4 | $GREP -o '[0-9]*\.[0-9]*')
+while true #creates an infinite loop until the script exits itself
+do 
+    cpu_total=100
 
-cpu_usage=$(echo "$cpu_total - $cpu_idle" | $BC -l)
+    cpu_idle=$($TOP -n 1 | $GREP "%Cpu(s):" | $CUT -d ',' -f 4 | $GREP -o '[0-9]*\.[0-9]*')
 
-usage_to_total=$(echo "$cpu_usage / $cpu_total" | $BC -l)
+    cpu_usage=$(echo "$cpu_total - $cpu_idle" | $BC -l)
 
-echo "$cpu_idle"
-echo "$cpu_usage"
-echo "$usage_to_total"
+    led_on_time=$(echo "$cpu_usage / $cpu_total" | $BC -l)
 
+    turn_on_pct_led
 
+    $SLEEP "$led_on_time"
+
+    turn_off_pct_led
+
+    # puts the process to sleep for 1 second
+    $SLEEP 1
+done
