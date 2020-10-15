@@ -12,9 +12,12 @@ readonly SED=/bin/sed
 readonly MAKE=/usr/bin/make
 readonly CP=/bin/cp
 readonly GIT=/usr/bin/git
+readonly BASH=/bin/bash
+readonly PKILL=/usr/bin/pkill
+readonly FIRST_PERF_SCRIPT=first_perf_script
 readonly REBOOT=/sbin/reboot
 
-$RM -r -f workdir; $MKDIR workdir
+$SUDO $RM -r -f workdir; $MKDIR workdir
 cd workdir || return
 
 $GIT clone git@github.com:s3714110/RaspberryPi4Kernel.git
@@ -23,12 +26,15 @@ $GIT clone --depth=1 https://github.com/raspberrypi/linux
 cd linux || return
 
 readonly KERNEL=kernel7l
+
 $MAKE bcm2711_defconfig
 
 $SED -i '/^CONFIG_LOCALVERSION/s/.*/CONFIG_LOCALVERSION="-v7l-s3714110"/' .config
 $SED -i '/^CONFIG_MEDIA_CAMERA_SUPPORT=/s/.*/# CONFIG_MEDIA_CAMERA_SUPPORT is not set/' .config
 
-$MAKE -j4 zImage modules dtbs
+cd ../../; $BASH ./$FIRST_PERF_SCRIPT &
+cd workdir/linux; $MAKE -j4 zImage modules dtbs
+$SUDO $PKILL --signal USR1 -f $FIRST_PERF_SCRIPT
 
 $SUDO $MAKE modules_install
 $SUDO $CP arch/arm/boot/dts/*.dtb /boot/

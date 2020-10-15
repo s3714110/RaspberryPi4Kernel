@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+trap "exit" USR1
+
 readonly RM=/bin/rm
 readonly SUDO=/usr/bin/sudo
 readonly VCGENCMD=/usr/bin/vcgencmd
@@ -10,10 +12,13 @@ readonly CUT=/usr/bin/cut
 readonly SLEEP=/bin/sleep
 readonly FILENAME=kernel_performance_data
 
-$RM -rf $FILENAME
+
+$SUDO $RM -rf $FILENAME
 
 second=-1
 $AWK -v OFS='\t' 'BEGIN { printf "%s\t%s\t%s\n", "Second elapsed", "Temperature(degrees C)", "CPU Clock(Mhz)" }'  >>$FILENAME
+
+
 
 while true
 do 
@@ -23,3 +28,4 @@ do
     $AWK -v OFS='\t' -v second="$second" -v temp="$temp" -v cpu_clock="$((cpu_clock/1000000))" 'BEGIN { printf "%s\t%s\t%s\n", second, temp, cpu_clock }'  >>$FILENAME
     $SLEEP 1
 done
+
