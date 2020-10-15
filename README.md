@@ -21,17 +21,17 @@
      &   Runs the script in the background (not outputting to terminal).
 ### **FILES**
 
-   /workdir/kernel-backup.tar
-       Backup of the current kernel module before installation.
+      /workdir/kernel-backup.tar
+          Backup of the current kernel module before installation.
 	  
-   /workdir/boot-backup.tar
-       Backup of the current boot folder before installation.
+      /workdir/boot-backup.tar
+          Backup of the current boot folder before installation.
 	  
-   .config
-	The configuation file for the new kernel. Some changes will be automatically made to the config file by the script.
+      .config
+	  The configuation file for the new kernel. Some changes will be automatically made to the config file by the script.
 	  
-   ./first_perf_script
-         Script that measures CPU temp and clock every second.
+      ./first_perf_script
+          Script that measures CPU temp and clock every second.
       
 ### **DIAGNOSTICS**
 
