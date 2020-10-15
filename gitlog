@@ -1,0 +1,207 @@
+commit 1c06b3bc3aea1112ba968f3b112cfcecdf3676a5
+Author: Lam Tran <s3714110@student.rmit.edu.au>
+Date:   Thu Oct 15 23:00:38 2020 +1100
+
+    Update first_perf_script.md
+
+commit 610c0fb52ef17d383d0fd93c80c9096d2052ec8e
+Author: Lam Tran <s3714110@student.rmit.edu.au>
+Date:   Thu Oct 15 23:00:20 2020 +1100
+
+    Update first_perf_script.md
+
+commit 4b7ac0e56de4448678da6746b823dabcc1cefd99
+Author: Lam Tran <s3714110@student.rmit.edu.au>
+Date:   Thu Oct 15 22:59:24 2020 +1100
+
+    Update README.md
+
+commit 5531a27e6455d258526ac722175da382ef50122b
+Author: Lam Tran <s3714110@student.rmit.edu.au>
+Date:   Thu Oct 15 22:56:55 2020 +1100
+
+    man page file for first perf script
+
+commit c14f09b4ee8761a263548318d2854a26c632aa05
+Author: Lam Tran <s3714110@student.rmit.edu.au>
+Date:   Thu Oct 15 22:38:03 2020 +1100
+
+    Update README.md
+
+commit 876ce97d57bd7549616924e4aa243770a06bf6b2
+Author: Lam Tran <s3714110@student.rmit.edu.au>
+Date:   Thu Oct 15 22:37:35 2020 +1100
+
+    Update README.md
+
+commit 5be5c26ba9b17fd4da26a56551e0ace63461c524
+Author: Lam Tran <s3714110@student.rmit.edu.au>
+Date:   Thu Oct 15 22:36:58 2020 +1100
+
+    Update README.md
+
+commit 46a3aaf115fea66e39ad4d3cc5b6b64523590138
+Author: Lam Tran <s3714110@student.rmit.edu.au>
+Date:   Thu Oct 15 22:36:12 2020 +1100
+
+    Update README.md
+
+commit e14a59599690cae600428eb0a62d9acfccfbfd5b
+Author: Lam Tran <s3714110@student.rmit.edu.au>
+Date:   Thu Oct 15 22:34:22 2020 +1100
+
+    Update README.md
+
+commit 44f2b08d01fad5d0c2301f53df294e55451595e2
+Author: Lam Tran <s3714110@student.rmit.edu.au>
+Date:   Thu Oct 15 22:33:29 2020 +1100
+
+    Update README.md
+
+commit 0088af795ea0ba5832a9488d138f3a303dc3e082
+Author: Lam Tran <s3714110@student.rmit.edu.au>
+Date:   Thu Oct 15 22:32:45 2020 +1100
+
+    Update README.md
+
+commit 10bb1d8afbfdc61ed3ccec5246ad646a8385c6a2
+Author: Lam Tran <s3714110@student.rmit.edu.au>
+Date:   Thu Oct 15 22:32:10 2020 +1100
+
+    Update README.md
+
+commit 27ba4ef55568696b7281709d4d821b2b4c7b0a79
+Author: Lam Tran <s3714110@student.rmit.edu.au>
+Date:   Thu Oct 15 22:30:41 2020 +1100
+
+    fixed spacing for readme.md
+
+commit 047b69a19393f3c4a8815fdbdd1a813b73b399ca
+Author: Lam Tran <s3714110@student.rmit.edu.au>
+Date:   Thu Oct 15 22:24:03 2020 +1100
+
+    Update README.md
+    
+    fixed syntax
+
+commit ad69937aed4de73a3bb636df95dbd6e4dda502cb
+Author: Lam Tran <s3714110@student.rmit.edu.au>
+Date:   Thu Oct 15 22:22:31 2020 +1100
+
+    Update README.md
+    
+    fixed syntax
+
+commit eaca9fc10e52a2a85b3c40c7bd11b38d4cfe48ff
+Author: Lam Tran <s3714110@student.rmit.edu.au>
+Date:   Thu Oct 15 22:21:42 2020 +1100
+
+    Update README.md
+    
+    fixed syntax
+
+commit 327b120e2ade818b323b4923e787e0e7f831917f
+Author: Lam Tran <s3714110@student.rmit.edu.au>
+Date:   Thu Oct 15 22:21:13 2020 +1100
+
+    Update README.md
+    
+    fixed syntax
+
+commit 44b0b4b53b50309d82776088a283fc66c68185e1
+Author: Lam Tran <s3714110@student.rmit.edu.au>
+Date:   Thu Oct 15 22:18:29 2020 +1100
+
+    Update README.md
+    
+    fixed formatting
+
+commit 43f495361d20e43f1e21491526006ddaaa79cccb
+Author: Lam Tran <s3714110@student.rmit.edu.au>
+Date:   Thu Oct 15 22:14:43 2020 +1100
+
+    man page for build kernel script
+
+commit b1c8b9022d99eda99d1648756630ae52145fd2b7
+Author: Lam Tran <s3714110@student.rmit.edu.au>
+Date:   Thu Oct 15 21:05:39 2020 +1100
+
+    added comments for bash and first perf script, and add back up kernel command for build script
+
+commit e25e9bdf6603201b264ef1c048b3a494a814c2c1
+Author: Lam Tran <s3714110@student.rmit.edu.au>
+Date:   Thu Oct 15 20:20:55 2020 +1100
+
+    Update report.md
+
+commit 0b95e81d7479ee2b11f1df1e2a717fd24b9861d3
+Author: Lam Tran <s3714110@student.rmit.edu.au>
+Date:   Thu Oct 15 20:19:34 2020 +1100
+
+    Update report.md
+
+commit cf8a0d08cfc6ca9ea2fee8805b0a5bed64ce32ff
+Author: Lam Tran <s3714110@student.rmit.edu.au>
+Date:   Thu Oct 15 20:18:15 2020 +1100
+
+    added perf analysis
+
+commit 562c8d7672fd341489473548102b61f2ec029008
+Author: Lam Tran <s3714110@student.rmit.edu.au>
+Date:   Thu Oct 15 19:39:00 2020 +1100
+
+    changed permission for scripts
+
+commit 85ceb076f2211e7fe2c8f8f89c494336264ce9f2
+Author: Lam Tran <s3714110@student.rmit.edu.au>
+Date:   Thu Oct 15 19:32:50 2020 +1100
+
+    added cpu clock-time graph created by gnuplot
+
+commit 7c4d632aa468b11968bbdffab45e115f1ac2d113
+Author: Lam Tran <s3714110@student.rmit.edu.au>
+Date:   Thu Oct 15 19:18:01 2020 +1100
+
+    added cpu temp time graph created by gnuplot
+
+commit fa1f376344a163f88598f39c2358caedaca98ee3
+Author: Lam Tran <s3714110@student.rmit.edu.au>
+Date:   Thu Oct 15 17:38:31 2020 +1100
+
+    integrated first perf script into build script, uploaded perf data file
+
+commit 8e579f831674f6fd54b91364c4ca2fc62985ade5
+Author: Lam Tran <s3714110@student.rmit.edu.au>
+Date:   Thu Oct 15 14:11:49 2020 +1100
+
+    fixed a syntax error
+
+commit f171de1ccdba9fa16c9e8045a67932871b02aeb2
+Author: Lam Tran <s3714110@student.rmit.edu.au>
+Date:   Thu Oct 15 13:45:28 2020 +1100
+
+    added first perf script that measures cpu temp and clock every second
+
+commit 150ce95f6e62ceeb8983d600be7ef8c06a48d9a5
+Author: Lam Tran <s3714110@student.rmit.edu.au>
+Date:   Thu Oct 15 10:30:06 2020 +1100
+
+    modify build kernel script to include excutables path
+
+commit 3ebb0ebb0b334c7b1e2204bdc9730731420f1fa3
+Author: Lam Tran <s3714110@student.rmit.edu.au>
+Date:   Wed Oct 14 22:19:43 2020 +1100
+
+    first revision of build kernal script, with test kernel name
+
+commit d8ff105fc55dedca6a62557788f73ffa11bbaec8
+Author: Lam Tran <s3714110@student.rmit.edu.au>
+Date:   Wed Oct 14 11:51:05 2020 +1100
+
+    added .config file for kernel
+
+commit 3aff64739a53425791fef25deffe4fc4d9d67c5a
+Author: Lam Tran <s3714110@student.rmit.edu.au>
+Date:   Wed Oct 14 10:28:39 2020 +1100
+
+    first commit
