@@ -20,6 +20,6 @@ do
     temp=$($SUDO $VCGENCMD measure_temp | $EGREP -o '[0-9]*\.[0-9]*')
     cpu_clock=$($SUDO $VCGENCMD measure_clock arm | $CUT -d '=' -f 2-)
     second=$((second + 1))
-    $AWK -v OFS='\t' -v second=''$second'' -v temp=''$temp'' -v cpu_clock=''$((cpu_clock/1000000))'' 'BEGIN { printf "%s\t%s\t%s\n", second, temp, cpu_clock }'  >>$FILENAME
+    $AWK -v OFS='\t' -v second="$second" -v temp="$temp" -v cpu_clock="$((cpu_clock/1000000))" 'BEGIN { printf "%s\t%s\t%s\n", second, temp, cpu_clock }'  >>$FILENAME
     $SLEEP 1
 done
