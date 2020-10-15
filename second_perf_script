@@ -4,20 +4,40 @@
 # exits the script when any command fails
 set -e
 
-# if the scripts catches a "USR2" signal, it will exit itself
-trap "exit" USR2
-
 # specifying all excutables' paths
 readonly TOP=/usr/bin/top
 readonly GREP=/bin/grep
 readonly CUT=/usr/bin/cut
 readonly BC=/usr/bin/bc
+readonly SUDO=/usr/bin/sudo
+readonly TEE=/usr/bin/tee
+
+# if the scripts catches a "USR2" signal, it will call the reset pct led function
+trap reset_pct_led USR2
+
+reset_pct_led() {
+    echo mmc0 | $SUDO $TEE /sys/class/leds/led0/trigger
+    exit
+}
+
+turn_on_pct_led() {
+    echo 1 | $SUDO $TEE /sys/class/leds/led0/brightness
+}
+
+turn_off_pct_led() {
+    echo 0 | $SUDO $TEE /sys/class/leds/led0/brightness
+}
 
 cpu_total=100
 
 cpu_idle=$($TOP -n 1 | $GREP "%Cpu(s):" | $CUT -d ',' -f 4 | $GREP -o '[0-9]*\.[0-9]*')
 
-cpu_usage=$(echo "$cpu_total - $cpu_idle" | $BC)
+cpu_usage=$(echo "$cpu_total - $cpu_idle" | $BC -l)
+
+usage_to_total=$(echo "$cpu_usage / $cpu_total" | $BC -l)
 
 echo "$cpu_idle"
 echo "$cpu_usage"
+echo "$usage_to_total"
+
+
