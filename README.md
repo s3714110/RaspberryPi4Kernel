@@ -53,8 +53,8 @@
 
 ### **AUTHOR**
 
-     Lam Tran 
-     <s3714110@student.rmit.edu.au>
+   Lam Tran 
+   <s3714110@student.rmit.edu.au>
 
 
 
