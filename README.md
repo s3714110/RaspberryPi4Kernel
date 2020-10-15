@@ -12,8 +12,7 @@ build_kernel(1)                     User Manuals                    build_kernel
 
 ### **DESCRIPTION**
 
-     **build_kernel** is a script that builds and installs a customi-
-     omised kernel for your Raspberry Pi 4. This script also ins- 
+     **build_kernel** is a script that builds and installs a customiomised kernel for your Raspberry Pi 4. This script also ins- 
      tall necessary packages for the kernal install and backs up 
      the current kernel in case something fails. While compiling 
      the kernel, the script will also call first_perf_script, tha
@@ -71,7 +70,8 @@ build_kernel(1)                     User Manuals                    build_kernel
 
 ### **AUTHOR**
 
-     Lam Tran <s3714110@student.rmit.edu.au>
+     Lam Tran 
+     <s3714110@student.rmit.edu.au>
 
 
 Linux                Last change: OCTOBER 2020                    2
