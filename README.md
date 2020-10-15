@@ -56,5 +56,5 @@
    Lam Tran 
    <s3714110@student.rmit.edu.au>
 
-
-
+### **SEE ALSO**
+   [first_perf_script(1)](first_perf_script.md)
