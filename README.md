@@ -16,6 +16,8 @@
 
   [first_perf_script](first_perf_script.md)
 
+  [second_perf_script](second_perf_script.md)
+
   [Performance report](report.md)
 
 
