@@ -18,22 +18,22 @@ trap reset_act_led USR2 SIGHUP SIGINT SIGTERM
 
 # resets led trigger state to default and exits the script
 reset_act_led() {
-    echo mmc0 | $SUDO $TEE /sys/class/leds/led0/trigger
+    echo mmc0 | $SUDO $TEE /sys/class/leds/led0/trigger >/dev/null
     exit
 }
 
 # turns on green LED
 turn_on_act_led() {
-    echo 1 | $SUDO $TEE /sys/class/leds/led0/brightness
+    echo 1 | $SUDO $TEE /sys/class/leds/led0/brightness >/dev/null
 }
 
 # turns off green LED
 turn_off_act_led() {
-    echo 0 | $SUDO $TEE /sys/class/leds/led0/brightness
+    echo 0 | $SUDO $TEE /sys/class/leds/led0/brightness >/dev/null
 }
 
 # removes green LED trigger before going into the while loop so we can manually turn on and off the LED
-echo none | $SUDO $TEE /sys/class/leds/led0/trigger
+echo none | $SUDO $TEE /sys/class/leds/led0/trigger >/dev/null
 
 while true #creates an infinite loop until the script exits itself
 do 
