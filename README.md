@@ -10,11 +10,13 @@
 
   This script is specifically configured for Raspberry Pi 4 model, so if you have a Pi 2 or 3, please refer to the **Modify config** section below 
 
-### **USER DOCUMENTATION**
+### **DOCUMENTATION**
 
   [build_kernel](build_kernel.md)
 
   [first_perf_script](first_perf_script.md)
+
+  [Performance report](report.md)
 
 
 ### **MODIFY CONFIG**

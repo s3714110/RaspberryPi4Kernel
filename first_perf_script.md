@@ -40,5 +40,5 @@
    <s3714110@student.rmit.edu.au>
 
 ### **SEE ALSO**
-   [build_kernel](build_kernel.md)
+   [build_kernel](build_kernel.md), [second_perf_script](second_perf_script.md)
 
