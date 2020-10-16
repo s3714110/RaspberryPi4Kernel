@@ -18,7 +18,7 @@
      
 ### **OPTIONS**
 
-     &   Runs the script in the background (not outputting to terminal).
+     &   Runs the script in the background
 ### **FILES**
 
       /workdir/kernel-backup.tar
@@ -32,7 +32,48 @@
 	  
       ./first_perf_script
           Script that measures CPU temp and clock every second.
-      
+
+### **ENVIRONMENT**
+
+     SUDO=/usr/bin/sudo
+          Grants sudo access to perform elevated privileges.
+     
+     APT=/usr/bin/apt
+          Used to install some of the prerequisite packages
+
+     RM=/bin/rm
+          Removes files or folders
+     
+     MKDIR=/bin/mkdir
+          Makes new directory
+     
+     SED=/bin/sed
+          A stream editor that was used to edit the .config file. 
+
+     MAKE=/usr/bin/make
+          Compiles files using a Makefile file. Was used to complie and install the kernel
+     
+     CP=/bin/cp
+          Copies files and folders
+     
+     GIT=/usr/bin/git
+          Invokes git program. Was used to checkout my own repository and the Raspberry Pi kernal repository
+     
+     BASH=/bin/bash
+          Invokes bash to run a script
+     
+     PKILL=/usr/bin/pkill
+          Used to kill a process using their name. It was also used to send a custom signal for other scripts
+
+     TAR=/bin/tar
+          Used to compress files and folder for easy storage
+     
+     UNAME=/bin/uname
+          Prints system information
+     
+     REBOOT=/sbin/reboot
+          Reboots the system
+
 ### **DIAGNOSTICS**
 
      Permission Denied

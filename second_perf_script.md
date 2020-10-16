@@ -16,7 +16,7 @@
      
 ### **OPTIONS**
 
-     &   Runs the script in the background (not outputting to terminal).
+     &   Runs the script in the background
 
 ### **FILES**
     
@@ -25,7 +25,31 @@
 
       /sys/class/leds/led0/brightness
           This file is used to turn on or off the green LED. The value of this file can either be 1 or 0. This value will only last if the value of trigger file is "none"
+
+### **ENVIRONMENT**
+
+     SUDO=/usr/bin/sudo
+          Grants sudo access to perform elevated privileges.
+     
+     TOP=/usr/bin/top
+          Displays all processes and CPU usage. This was used to get the percentage of CPU usage
+     
+     TEE=/usr/bin/tee
+          Reads from input and writes to a file. This was used to write to files that control the green LED
       
+     BC=/usr/bin/bc
+          An arbitrary precision calculator language. This was used to accurately calculate CPU usage, amount of time needed, since shell doesn't support floating numbers
+
+     GREP=/bin/grep
+          Matches a word with a pattern using regex. This was used to clean up the performance data.
+
+     CUT=/usr/bin/cut
+          Cuts a line into parts with a delimitor. This was also used to clean up the performance data.
+
+     SLEEP=/bin/sleep
+          Puts the script into sleep for a defined amount of time
+      
+
 ### **DIAGNOSTICS**
 
      Permission Denied
